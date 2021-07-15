@@ -1,9 +1,9 @@
 // It has the same sandbox as a Chrome extension.
 // All of the Node.js APIs are available in the preload process.
-const dragAndDrop = require("./modules/drag.and.drop.module");
-const messageSender = require("./modules/message.sender.module");
+const dragAndDrop = require("./src/modules/drag.and.drop.module");
+const messageSender = require("./src/modules/message.sender.module");
 const {ipcRenderer} = require('electron');
-const {notify} = require("./modules/notify.module");
+const {notify} = require("./src/modules/notify.module");
 
 window.addEventListener('DOMContentLoaded', () => {
 

@@ -1,4 +1,5 @@
-const {Menu, shell, app} = require('electron');
+const {Menu, shell, app, dialog} = require('electron');
+const updater = require("./updater.module");
 
 module.exports = {
     create: (mainWindow) => {
@@ -19,12 +20,27 @@ module.exports = {
                         }
                     },
                     {
+                        label: 'Check for Update',
+                        click(){
+                            updater.checkForUpdates();
+                        }
+                    },
+                    {
                         label: 'Exit',
                         click(){
                             app.quit();
                         }
                     }
                 ]
+            },
+            {
+                label: 'Version',
+                click(){
+                    dialog.showMessageBox({
+                        title: 'Version',
+                        message: `Current version is ${app.getVersion()}.`
+                      })
+                }
             }
         ]);
         Menu.setApplicationMenu(menu);
