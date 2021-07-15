@@ -1,15 +1,26 @@
 {
-  "name": "electron-quick-start",
+  "name": "blog-electron-app-sexy",
   "version": "1.0.2",
   "description": "A minimal Electron application",
-  "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "build:app": "electron-packager . electron-quick-start --platform win32 --arch x64 --out dist/ --overwrite",
-    "build:setup": "electron-installer-windows --src dist/electron-quick-start-win32-x64/ --dest dist/installers/",
-    "build:app-setup": "npm run build:app && npm run build:setup"
+    "dev": "electron-webpack dev",
+    "compile": "electron-webpack",
+    "dist": "yarn compile && electron-builder",
+    "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null"
   },
-  "repository": "https://github.com/electron/electron-quick-start",
+  "repository": "https://github.com/astec/blog-electron-app-sexy.git",
+  "build": {
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "astec-kte",
+        "repo": "blog-electron-app-sexy",
+        "private": false,
+        "token": "token"
+      }
+    ]
+  },
   "keywords": [
     "Electron",
     "quick",
@@ -17,15 +28,20 @@
     "tutorial",
     "demo"
   ],
-  "author": "GitHub",
+  "author": "Astec",
   "license": "CC0-1.0",
   "devDependencies": {
     "electron": "^10.1.3",
-    "electron-installer-windows": "^3.0.0"
+    "electron-builder": "^22.11.7",
+    "electron-installer-windows": "^3.0.0",
+    "electron-prebuilt-compile": "^1.7.9",
+    "electron-webpack": "^2.8.2",
+    "webpack": "^4.46.0"
   },
   "dependencies": {
-    "electron-packager": "^15.1.0",
     "electron-squirrel-startup": "^1.0.0",
-    "jshint": "^2.13.0"
+    "electron-updater": "^4.3.9",
+    "source-map-support": "^0.5.19",
+    "update-electron-app": "^2.0.1"
   }
 }
